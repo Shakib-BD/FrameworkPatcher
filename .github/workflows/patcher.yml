@@ -40,10 +40,13 @@ jobs:
         distribution: 'temurin'
         java-version: '11'
 
-    - name: Install dependencies
+    - name: install dependencies
       run: |
-        sudo apt install -y default-jdk zipalign p7zip-full python3 aria2 jq
+        echo "deb http://archive.ubuntu.com/ubuntu noble main universe" | sudo tee /etc/apt/sources.list
+        sudo apt-get update
+        sudo apt-get install -y --fix-missing default-jdk zipalign p7zip-full python3 aria2 jq
         pip install gdown
+
 
     - name: Write inputs to files
       run: |
